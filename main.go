@@ -12,8 +12,7 @@ func main() {
 		log.Println("Hello World")
 		d, err := ioutil.ReadAll(r.Body)
 		if err != nil {
-			rw.WriteHeader(http.StatusBadRequest)
-			rw.Write([]byte("Oops"))
+			http.Error(rw, "Oops", http.StatusBadRequest)
 			return
 		}
 		fmt.Fprintf(rw, "Hello World %s\n", d)
